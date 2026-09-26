@@ -14,5 +14,5 @@ pip install pillow
 
 # Running
 
-```python demo.py``` will create output.png and debug.png 
+```python demo.py``` will create output.png and debug.png  
 debug.png will not be considered for grading.
