@@ -74,7 +74,8 @@ def funnyFunction(pos, ray, sun_dir):
     funGradient = vec3(0,0,0)
     if (collided):
         hit_dir = atmosphereHitPosition.normalized()
-        funGradient = (hit_dir*0.5+vec3(0.5,0.5,0.5)) * dot(hit_dir, sun_dir) + vec3(0.01,0.1,0.1) + _earth(pos, ray, sun_dir)
+        # notice you can sometimes get weird behavior when there's negative values
+        funGradient = (hit_dir*0.5+vec3(0.5,0.5,0.8)) * max(dot(hit_dir, sun_dir),0.05) + _earth(pos, ray, sun_dir)*vec3(0.5,0.5,0.7) + vec3(0.05,0.02,0.05)
     else:
         funGradient = (ray-vec3(0.5,0,0))*0.5+vec3(0.5,0.5,0.5)
     return funGradient
@@ -102,7 +103,7 @@ def _earth(pos, direction, sun_dir):
     color = vec3(0,0,0)
     if hit:
         surface_dir = surface_km.normalized()
-        ndotl = surface_dir.dot(sun_dir)
+        ndotl = max(surface_dir.dot(sun_dir),0)
         if ndotl >= 0.0:
             color = vec3(0.7,0.7,1)*ndotl*0.5
     return color
