@@ -15,4 +15,6 @@ pip install pillow
 # Running
 
 ```python demo.py``` will create output.png and debug.png  
-debug.png will not be considered for grading.
+
+output.png will be considered for physics and accuracy
+debug.png will be considered for artwork
