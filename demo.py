@@ -105,9 +105,10 @@ def render_kernel(
         # but I left it out here so that you can mess up atmos and still have a visible Earth   
         surface = at._earth(pos, ray, sun_dir)
 
-        color, debug = at._atmos(pos, ray, sun_dir) # an astute researcher might find reason to have another input or output...
+        color, transmittance, debug = at._atmos(pos, ray, sun_dir) # an astute researcher might find reason to have another input or output...
 
-        clampedColor = ti.math.clamp((color+surface)*255, 0.0, 255.0) # said researcher would also have to change this line
+        clampedColor = ti.math.clamp((color+surface * transmittance)*255, 0.0, 255.0) # said researcher would also have to change this line
+
         clampedDebug = ti.math.clamp(debug*255, 0.0, 255.0)
         out_color[i, j, 0] = clampedColor.x
         out_color[i, j, 1] = clampedColor.y
