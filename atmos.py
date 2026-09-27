@@ -38,7 +38,7 @@ MIE_G = 0.8
 
 SUN_INTENSITY = vec3(1.474, 1.850, 1.912)
 # Scale up to simulate exposure
-SUN_INTENSITY = SUN_INTENSITY * 14.0
+SUN_INTENSITY = SUN_INTENSITY * 12.0
 
 # endregion
 
