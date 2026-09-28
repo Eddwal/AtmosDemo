@@ -52,7 +52,6 @@ def _convert_ray_to_sphere_space(origin: vec3, direction: vec3, width: ti.f32, h
     sphere_dir = vec3(direction.x, direction.y, direction.z * w_over_h)
     return sphere_origin, sphere_dir.normalized()
 
-
 # This function transforms a point into a coordinate space where the z axis is scaled by height/width
 @ti.func
 def _convert_pos_to_spheroid_space(pos: vec3, width: ti.f32, height: ti.f32) -> vec3:
@@ -234,7 +233,7 @@ def _atmos(pos, ray, sun_dir):
 # Feel free to play with it if you're making an art piece
 @ti.func
 def _earth(pos, direction, sun_dir):
-    surface_km, hit, _, _ = cast_ray_against_oblate_spheroid(pos, direction, EARTH_RADIUS_KM, EARTH_RADIUS_KM)
+    surface_km, hit, _, _ = cast_ray_against_oblate_spheroid(pos, direction, EARTH_EQUATORIAL_RADIUS_KM, EARTH_POLAR_RADIUS_KM)
     color = vec3(0, 0, 0)
     if hit:
         surface_dir = surface_km.normalized()
