@@ -222,7 +222,7 @@ def _atmos(pos, ray, sun_dir):
 
     final_transmittance = ti.exp(
         -(view_optical_depth_rayleigh * BETA_RAYLEIGH + view_optical_depth_mie * BETA_MIE_EXTINCTION))
-    return total_color * SUN_INTENSITY, final_transmittance, vec3(0.0)
+    return total_color * SUN_INTENSITY, final_transmittance, vec3(view_optical_depth_rayleigh / 1000.0)
 
 
 # Used by demo.py
